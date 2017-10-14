@@ -1,0 +1,13 @@
+channels:
+  - conda-forge
+name: py36
+dependencies:
+- openssl
+- pip
+- python=3.6
+- readline
+- setuptools
+- wheel
+- zlib
+- pip:
+  - Sphinx
