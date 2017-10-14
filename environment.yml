@@ -9,3 +9,5 @@ dependencies:
 - zlib
 - pip:
   - Sphinx
+  - astropy
+  - numpy
