@@ -1,7 +1,8 @@
 
-# AlbireoLib
+AlbireoLib
+==========
 
-An unsorted set of tools and functions for astronomical purposes.
+An unsorted set of tools and functions for astronomical purposes. This is a Python>=3.6 package.
 
 |docs|
 
