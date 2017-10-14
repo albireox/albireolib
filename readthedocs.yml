@@ -4,5 +4,5 @@ python:
    extra_requirements:
         - dev
 
-conda:
-    file: environment.yml
+# conda:
+#     file: environment.yml
