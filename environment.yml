@@ -9,4 +9,3 @@ dependencies:
 - zlib
 - pip:
   - Sphinx
-  - -r requirements.txt
