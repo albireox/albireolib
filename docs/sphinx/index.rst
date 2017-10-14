@@ -1,21 +1,20 @@
 
-===============================
+
 Welcome to AlbireoLib's documentation!
-===============================
+======================================
 
-This is the Sphinx documentation for the Python product albireolib
+This library contains a series of eclectic functions and classes for astronomical purposes.
 
-- :ref:`What's new in 0.1.0? <albireolib-changelog>`
-
-A description of the package can go here.
+Contents
+--------
 
 .. toctree::
    :maxdepth: 2
 
-   intro
-   api
+   image
+   surveys
 
-
+|
 
 Indices and tables
 ==================
