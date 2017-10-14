@@ -10,3 +10,5 @@ An unsorted set of tools and functions for astronomical purposes. This is a Pyth
     :alt: Documentation Status
     :scale: 100%
     :target: https://albireolib.readthedocs.io/en/latest/?badge=latest
+
+.. image:: https://img.shields.io/pypi/pyversions/Django.svg   :target:
