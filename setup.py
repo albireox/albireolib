@@ -28,7 +28,7 @@ def run(packages):
           version=VERSION,
           license='BSD3',
           description='Description of your project.',
-          long_description='README.rst',
+          long_description=open('README.rst').read(),
           author='José Sánchez-Gallego',
           author_email='gallegoj@uw.edu',
           keywords='astronomy software',
