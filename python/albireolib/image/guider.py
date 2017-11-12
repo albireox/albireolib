@@ -93,23 +93,27 @@ def plot_gimage_blur(files, plot_order_by='cart', extension=2, mask_extension=3)
 
     for fn in files:
 
-        data = fits.getdata(pathlib.Path(fn), extension)
-        mask = fits.getdata(pathlib.Path(fn), mask_extension) > 0
+        fn_path = pathlib.Path(fn)
+        data = fits.getdata(fn_path, extension)
+        mask = fits.getdata(fn_path, mask_extension) > 0
 
         if data.shape[0] < 100 or data.shape[1] < 10:
             warnings.warn(f'invalid image {fn!s} with shape {data.shape}.')
             blur_meas_return.append(np.nan)
             continue
 
-        flat_cart = fits.getheader(fn, 0)['FLATCART']
+        frame = int(fits.getheader(fn, 0)['OBJECT'].split('-')[1])
+        flat_files = list(fn_path.parent.glob(f'flat-{frame:04d}-*.dat'))
 
-        if flat_cart <= 0:
-            warnings.warn(f'invalid image {fn!s} with FLATCART {flat_cart}.')
+        if len(flat_files) == 0 or len(flat_files) > 1:
+            warnings.warn(f'no flat found for image {fn!s}.')
             blur_meas_return.append(np.nan)
             continue
 
+        cart = int(flat_files[0].name.split('-')[2].split('.')[0])
+
         plot_data.append(np.ma.array(data, mask=mask))
-        carts.append(flat_cart)
+        carts.append(cart)
         gimgs.append(fits.getheader(fn, 0)['OBJECT'])
 
         blur_meas_plot.append(calculate_blur(data, mask))
