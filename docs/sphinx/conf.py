@@ -105,7 +105,9 @@ todo_include_todos = False
 # Intersphinx mappings
 intersphinx_mapping = {'python': ('https://docs.python.org/3.6', None),
                        'astropy': ('http://docs.astropy.org/en/latest', None),
-                       'numpy': ('http://docs.scipy.org/doc/numpy/', None)}
+                       'numpy': ('http://docs.scipy.org/doc/numpy/', None),
+                       'matplotlib': ('https://matplotlib.org/', None),
+                       'scipy': ('https://docs.scipy.org/doc/scipy/reference', None)}
 
 autodoc_mock_imports = ['_tkinter']
 autodoc_member_order = 'groupwise'
