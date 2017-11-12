@@ -13,7 +13,8 @@ import os
 from invoke import Collection, task
 
 
-# This file contains tasks that can be easily run from the shell terminal using the Invoke python package
+# This file contains tasks that can be easily run from the shell terminal using the
+# Invoke python package
 # If you do not have invoke, install it with pip install
 # To list the tasks available, type invoke --list from the top-level repo directory
 
@@ -24,7 +25,7 @@ def clean_docs(ctx):
     ctx.run("rm -rf docs/sphinx/_build")
 
 
-@task(clean_docs)
+@task
 def build_docs(ctx):
     ''' Builds the Sphinx docs '''
     print('Building the docs')
