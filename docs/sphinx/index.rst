@@ -13,6 +13,7 @@ Contents
 
    image
    surveys
+   misc
 
 |
 
