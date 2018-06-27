@@ -8,9 +8,7 @@
 # @Copyright: José Sánchez-Gallego
 
 
-from __future__ import division
-from __future__ import print_function
-from __future__ import absolute_import
+from __future__ import absolute_import, division, print_function
 
 import itertools
 import re
@@ -19,8 +17,7 @@ import warnings
 import astropy.convolution
 import astropy.modeling
 import astropy.wcs
-
-import numpy as np
+import numpy
 
 
 __all__ = ['crop_hdu', 'replace_wcs', 'fwhm_to_sigma', 'sigma_to_fwhm',
@@ -60,7 +57,7 @@ def crop_hdu(hdu, xmin, xmax, ymin, ymax, return_wcs=True, ignore_warnings=True)
     data = new_hdu.data.copy()
     data = data[ymin:ymax, xmin:xmax]
 
-    new_hdu.data = np.array(data)
+    new_hdu.data = numpy.array(data)
 
     if return_wcs is False:
         return new_hdu
@@ -118,13 +115,13 @@ def replace_wcs(hdu, wcs):
 def fwhm_to_sigma(fwhm):
     """Returns the sigma for a FWHM."""
 
-    return fwhm / 2 / np.sqrt(2 * np.log(2))
+    return fwhm / 2 / numpy.sqrt(2 * numpy.log(2))
 
 
 def sigma_to_fwhm(sigma):
     """Returns the FWHM for a sigma."""
 
-    return sigma * 2 * np.sqrt(2 * np.log(2))
+    return sigma * 2 * numpy.sqrt(2 * numpy.log(2))
 
 
 def gaussian_kernel_from_fwhm(fwhm, pixel_scale=1, **kwargs):
@@ -161,9 +158,9 @@ def fit_gaussian(array):
     """Fits a 2D gaussian to an array of data."""
 
     shape = array.shape
-    xmean, ymean = np.array(shape) / 2.
+    xmean, ymean = numpy.array(shape) / 2.
 
-    xx, yy = np.mgrid[:shape[0], :shape[1]]
+    xx, yy = numpy.mgrid[:shape[0], :shape[1]]
 
     g_init = astropy.modeling.models.Gaussian2D(amplitude=1., x_mean=xmean, y_mean=ymean,
                                                 x_stddev=1., y_stddev=1.)
