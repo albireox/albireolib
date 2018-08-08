@@ -5,11 +5,13 @@
 #
 # @Author: Brian Cherinka
 # @Date:   2017-09-27 11:08:07
-# @Last modified by:   Brian Cherinka
+# @Last modified by: José Sánchez-Gallego (gallegoj@uw.edu)
 # @Last Modified time: 2017-09-27 11:20:46
 
-from __future__ import print_function, division, absolute_import
+from __future__ import absolute_import, division, print_function
+
 import os
+
 from invoke import Collection, task
 
 
@@ -20,14 +22,19 @@ from invoke import Collection, task
 
 @task
 def clean_docs(ctx):
-    ''' Cleans up the Sphinx docs '''
+    """Cleans up the docs"""
     print('Cleaning the docs')
     ctx.run("rm -rf docs/sphinx/_build")
 
 
 @task
-def build_docs(ctx):
-    ''' Builds the Sphinx docs '''
+def build_docs(ctx, clean=False):
+    """Builds the Sphinx docs"""
+
+    if clean:
+        print('Cleaning the docs')
+        ctx.run("rm -rf docs/sphinx/_build")
+
     print('Building the docs')
     os.chdir('docs/sphinx')
     ctx.run("make html")
@@ -57,6 +64,8 @@ def deploy(ctx):
     ctx.run("python setup.py sdist bdist_wheel --universal")
     ctx.run("twine upload dist/*")
 
+
+os.chdir(os.path.dirname(__file__))
 
 # create a collection of tasks
 ns = Collection(clean, deploy)
