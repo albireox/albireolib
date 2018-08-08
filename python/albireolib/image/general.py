@@ -7,7 +7,7 @@
 # @License: BSD 3-clause (http://www.opensource.org/licenses/BSD-3-Clause)
 #
 # @Last modified by: José Sánchez-Gallego (gallegoj@uw.edu)
-# @Last modified time: 2018-08-07 22:32:01
+# @Last modified time: 2018-08-08 16:03:51
 
 
 from __future__ import absolute_import, division, print_function
@@ -90,12 +90,13 @@ def replace_wcs(hdu, wcs):
     Removes the current WCS information in the input
     `~astropy.io.fits.ImageHDU` and replace it with new one.
 
-    Parameters:
-        hdu (~astropy.io.fits.ImageHDU):
-            The `~astropy.io.fits.ImageHDU` whose WCS definition we will
-            replace.
-        wcs (~astropy.wcs.WCS):
-            A `~astropy.wcs.WCS` object containing the new WCS definition.
+    Parameters
+    ----------
+    hdu : `~astropy.io.fits.ImageHDU`:
+        The `~astropy.io.fits.ImageHDU` whose WCS definition we will
+        replace.
+    wcs : `~astropy.wcs.WCS`:
+        A `~astropy.wcs.WCS` object containing the new WCS definition.
 
     """
 
@@ -131,16 +132,19 @@ def sigma_to_fwhm(sigma):
 def gaussian_kernel_from_fwhm(fwhm, pixel_scale=1, **kwargs):
     """Returns a Gaussian kernel for a FWHM.
 
-    Parameters:
-        fwhm (float):
-            The FWHM (seeing) of the Gaussian kernel, in arcsec.
-        pixel_scale (float):
-            The pixels scale, in arcsec.
-        kwargs (dict):
-            Other parameters to be passed to
-            `~astropy.convolution.Gaussian2DKernel`.
+    Parameters
+    ----------
+    fwhm : `float`
+        The FWHM (seeing) of the Gaussian kernel, in arcsec.
+    pixel_scale : `float`
+        The pixels scale, in arcsec.
+    kwargs : `dict`
+        Other parameters to be passed to
+        `~astropy.convolution.Gaussian2DKernel`.
 
-    Returns (`~astropy.convolution.Gaussian2DKernel`):
+    Returns
+    -------
+    kernel : `~astropy.convolution.Gaussian2DKernel`
         An astropy `~astropy.convolution.Gaussian2DKernel` kernel for the
         input FHWM.
 
@@ -181,13 +185,13 @@ class CCD(object):
 
     Parameters
     ----------
-    shape : tuple
+    shape : `tuple`
         The shape of the image to generate.
-    pixel_size : float
+    pixel_size : `float`
         The pixel size, in microns. Assumes the pixel is square.
-    read_noise : float
+    read_noise : `float`
         The RMS of the read noise, in electrons.
-    gain : float
+    gain : `float`
         The gain in electrons per ADU.
     name : `str` or None
         A string with the name of the CCD chip (e.g., its model or SN).
@@ -208,7 +212,7 @@ class SyntheticImage(object):
 
     Parameters
     ----------
-    ccd : `.CCD`
+    ccd : .CCD
         A `.CCD` object describing the chip that produces this image.
     xy : list
         A list of tuples in which each tuple are the ``(x, y)`` coordinates of
@@ -224,7 +228,7 @@ class SyntheticImage(object):
     peaks : list or float
         The peak of each of the Gaussian sources. Same format as ``sigma_x``.
         Cannot be defined at the same time as ``fluxes``.
-    bias : float or `None`
+    bias : float or None
         The bias level of the image. If ``None``, no bias level will be added.
     cosmic_p : float
         The p factor for the binomial distribution used to model cosmic rays.
@@ -242,9 +246,9 @@ class SyntheticImage(object):
         The array representing the image signal.
     noise : `numpy.ndarray`
         The array representing the image noise.
-    sources : list
-        A list of `~astropy.modeling.models.Gaussian2D` objects that have been
-        added to the image.
+    sources : `list`
+        A list of `~astropy.modeling.functional_models.Gaussian2D` objects that
+        have been added to the image.
 
     """
 
@@ -358,11 +362,11 @@ class SyntheticImage(object):
         sigma_y : float
             The sigma across the y axis.
 
-        Return
-        ------
-        out : `~astropy.modeling.models.Gaussian2D`
-            The astropy `~astropy.modeling.models.Gaussian2D` object used to
-            create this source. Poisson noise will be added.
+        Returns
+        -------
+        out : `~astropy.modeling.functional_models.Gaussian2D`
+            The astropy `~astropy.modeling.functional_models.Gaussian2D` object
+            used to create this source. Poisson noise will be added.
 
         """
 

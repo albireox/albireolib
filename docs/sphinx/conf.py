@@ -114,7 +114,7 @@ autodoc_mock_imports = ['_tkinter']
 autodoc_member_order = 'groupwise'
 
 napoleon_use_rtype = False
-napoleon_use_ivar = True
+napoleon_use_ivar = False
 
 rst_epilog = """
 .. |numpy_array| replace:: Numpy array

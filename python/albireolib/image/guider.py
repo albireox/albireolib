@@ -8,21 +8,17 @@
 # @Copyright: José Sánchez-Gallego
 
 
-from __future__ import division
-from __future__ import print_function
-from __future__ import absolute_import
+from __future__ import absolute_import, division, print_function
 
 import pathlib
 import warnings
 
+import astropy.io.fits as fits
 import matplotlib
 import matplotlib.pyplot as plt
 import numpy as np
-
 from scipy.ndimage.filters import laplace
 from scipy.ndimage.morphology import binary_dilation
-
-import astropy.io.fits as fits
 
 
 def calculate_blur(image, mask=None, iterations=3):
@@ -52,27 +48,28 @@ def calculate_blur(image, mask=None, iterations=3):
 def plot_gimage_blur(files, plot_order_by='cart', extension=2, mask_extension=3):
     """Returns a plot of blur measurements for a list of images.
 
-    Parameters:
-        files (str, `~pathlib.Path`, or list):
-            A list of filepaths as strings or `~pathlib.Path` objects.
-        plot_order_by (str):
-            The order in which the files are plotted. Can be ``None``, in
-            which case the input order will be user, or ``'cart'`` for sorting
-            the input files by cart id.
-        extension (int):
-            The extension in the input file that contains the data to plot.
-        mask_extension (int):
-            The extension in the input file that contains the mask for the
-            data.
+    Parameters
+    ----------
+    files : `str` or `~pathlib.Path`, or `list`
+        A list of filepaths as strings or `~pathlib.Path` objects.
+    plot_order_by : `str`
+        The order in which the files are plotted. Can be ``None``, in
+        which case the input order will be user, or ``'cart'`` for sorting
+        the input files by cart id.
+    extension : `int`
+        The extension in the input file that contains the data to plot.
+    mask_extension : int
+        The extension in the input file that contains the mask for the data.
 
-    Returns:
-        plot_data (tuple):
-            A tuple in which the first element is the plot
-            `~matplotlib.figure.Figure`, the second are the
-            `~matplotlib.axes.Axes`, the last one is a list of blur
-            measurements as returned by `.calculate_blur`. The list of blur
-            estimates has the same order as the input ``files``. Some of the
-            elements may be `numpy.nan` if the blurriness cannot be calculated.
+    Returns
+    -------
+    plot_data : `tuple`
+        A tuple in which the first element is the plot
+        `~matplotlib.figure.Figure`, the second are the
+        `~matplotlib.axes.Axes`, the last one is a list of blur measurements
+        as returned by `.calculate_blur`. The list of blur estimates has the
+        same order as the input ``files``. Some of the elements may be
+        `numpy.nan` if the blurriness cannot be calculated.
 
     """
 
