@@ -15,10 +15,9 @@ Contents
    surveys
    misc
 
-|
 
 Indices and tables
-==================
+------------------
 
 * :ref:`genindex`
 .. * :ref:`modindex`
