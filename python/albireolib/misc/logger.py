@@ -7,7 +7,7 @@
 # @License: BSD 3-clause (http://www.opensource.org/licenses/BSD-3-Clause)
 #
 # @Last modified by: José Sánchez-Gallego (gallegoj@uw.edu)
-# @Last modified time: 2018-07-14 21:23:27
+# @Last modified time: 2018-08-08 17:24:45
 
 
 from __future__ import absolute_import, division, print_function
@@ -25,10 +25,11 @@ import warnings
 from logging import PercentStyle
 from logging.handlers import TimedRotatingFileHandler
 
-import click
 from pygments import highlight
 from pygments.formatters import TerminalFormatter  # pylint:disable-msg=E0611
 from pygments.lexers import get_lexer_by_name
+
+from .color_print import color_text
 
 
 def print_exception_formatted(typ, value, tb):
@@ -56,8 +57,8 @@ def colored_formatter(record):
 
     if levelname.lower() in colours:
         levelname_color = colours[levelname][0]
-        bold = True if colours[levelname][1] == 'bold' else False
-        header = click.style('[{}]: '.format(levelname.upper()), levelname_color, bold=bold)
+        header = color_text('[{}]: '.format(levelname.upper()),
+                            levelname_color)
 
     message = record.getMessage()
 
@@ -66,8 +67,8 @@ def colored_formatter(record):
         if warning_category_groups is not None:
             warning_category, warning_text = warning_category_groups.groups()
 
-            warning_category_colour = click.style('({})'.format(warning_category), 'cyan')
-            message = '{} {}'.format(click.style(warning_text, fg=None), warning_category_colour)
+            warning_category_colour = color_text('({})'.format(warning_category), 'cyan')
+            message = '{} {}'.format(color_text(warning_text, ''), warning_category_colour)
 
     sys.__stdout__.write('{}{}\n'.format(header, message))
     sys.__stdout__.flush()
