@@ -4,5 +4,4 @@ astropy
 pyyaml
 pygments
 pillow
-
-# sphinx
+matplotlib
